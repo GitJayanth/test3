@@ -1,0 +1,2 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="HyperCatalog.TotallyEmpty.master.cs" Inherits="TotallyEmptyMasterPage" %>
+<asp:contentplaceholder id="HOCP" runat="server"></asp:contentplaceholder>

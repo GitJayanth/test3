@@ -1,0 +1,113 @@
+<%@ Page Language="C#" MasterPageFile="~/HyperCatalog.master" Inherits="HyperCatalog.UI.Admin.ContainerTypes" CodeFile="ContainerTypes.aspx.cs" %>
+<%@ Register TagPrefix="igtbl" Namespace="Infragistics.WebUI.UltraWebGrid" Assembly="Infragistics2.WebUI.UltraWebGrid.v11.1, Version=11.1.20111.2238, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" %>
+<%@ Register TagPrefix="igtbar" Namespace="Infragistics.WebUI.UltraWebToolbar" Assembly="Infragistics2.WebUI.UltraWebToolbar.v11.1, Version=11.1.20111.2238, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" %>
+<%@ Register TagPrefix="igtab" Namespace="Infragistics.WebUI.UltraWebTab" Assembly="Infragistics2.WebUI.UltraWebTab.v11.1, Version=11.1.20111.2238, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" %>
+<asp:Content ID="PageTitle" ContentPlaceHolderID="HOPT" runat="server">Container types</asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="HOCP" Runat="Server">
+	<script>
+		function uwToolbar_Click(oToolbar, oButton, oEvent)
+		{
+		    if (oButton.Key == 'filter')
+		    {     		     
+		      DoSearch();	
+          oEvent.cancelPostBack = true;
+          return;
+        }
+		}
+	</script>
+	<table class="main" cellspacing="0" cellpadding="0">
+		<tr valign="top">
+			<td class="sectionTitle">
+				<asp:label id="lbTitle" runat="server">PageTitle</asp:label></td>
+                <%--Removed width property in ultrawebtoolbar by Radha S to fix the horizantal width issue--%>
+			<asp:panel id="panelGrid" runat="server" Visible="True">
+				<tr valign="top" style="height:1px">
+					<td>
+						<igtbar:ultrawebtoolbar id="uwToolbar" runat="server" ItemWidthDefault="80px" CssClass="hc_toolbar">
+							<HoverStyle CssClass="hc_toolbarhover"></HoverStyle>
+							<DefaultStyle CssClass="hc_toolbardefault"></DefaultStyle>
+							<SelectedStyle CssClass="hc_toolbarselected"></SelectedStyle>
+							<Items>
+								<igtbar:TBarButton Key="Add" Text="Add" Image="/hc_v4/img/ed_new.gif"></igtbar:TBarButton>
+								<igtbar:TBSeparator Key="AddSep"></igtbar:TBSeparator>
+								<igtbar:TBarButton Key="Export" Text="Export" Image="/hc_v4/img/ed_download.gif"></igtbar:TBarButton>
+								<igtbar:TBSeparator></igtbar:TBSeparator>
+								<igtbar:TBLabel Text="Filter">
+									<DefaultStyle Width="40px" Font-Bold="True"></DefaultStyle>
+								</igtbar:TBLabel>
+								<igtbar:TBCustom Width="150px" Key="filterField">
+									<asp:TextBox cssClass="Search" Width="150px" Id="txtFilter" MaxLength="50"></asp:TextBox>
+								</igtbar:TBCustom>
+								<igtbar:TBarButton Key="filter" Image="/hc_v4/img/ed_search.gif">
+									<DefaultStyle Width="25px"></DefaultStyle>
+								</igtbar:TBarButton>
+							</Items>
+							<ClientSideEvents InitializeToolbar="uwToolbar_InitializeToolbar" Click="uwToolbar_Click"></ClientSideEvents>
+						</igtbar:ultrawebtoolbar></td>
+				</tr>
+				<tr valign="top">
+					<td>
+						<igtbl:UltraWebGrid id="dg" runat="server" Width="100%">
+							<DisplayLayout MergeStyles="False" AutoGenerateColumns="False" AllowSortingDefault="OnClient" SelectTypeRowDefault="Single"
+								HeaderClickActionDefault="SortSingle" RowSelectorsDefault="No" Name="dg" TableLayout="Fixed"
+								CellClickActionDefault="RowSelect" NoDataMessage="No input forms attached to this container">
+								<HeaderStyleDefault VerticalAlign="Middle" Font-Bold="true" Cursor="Hand" BackColor="LightGray" HorizontalAlign="Center" > <%--CssClass="gh"--%>
+									<BorderDetails StyleBottom="Solid" WidthRight="1pt" StyleRight="Solid" WidthBottom="1pt"></BorderDetails>
+								</HeaderStyleDefault>
+								<FrameStyle Width="100%" CssClass="dataTable"></FrameStyle>
+								<RowAlternateStyleDefault CssClass="uga"></RowAlternateStyleDefault>
+								<RowStyleDefault TextOverflow="Ellipsis" VerticalAlign="Top" BorderWidth="1px" CssClass="ugd"></RowStyleDefault>
+							</DisplayLayout>
+							<Bands>
+								<igtbl:UltraGridBand BaseTableName="ContainerTypes" Key="ContainerTypes" BorderCollapse="Collapse" DataKeyField="ContainerTypeCode">
+									<Columns>
+										<igtbl:TemplatedColumn Key="Id" Width="40px" HeaderText="Code" BaseColumnName="Code" CellMultiline="Yes">
+											<CellTemplate>
+												<asp:LinkButton id="Linkbutton1" onclick="UpdateGridItem" runat="server">
+													<%#Container.Text%>
+												</asp:LinkButton>
+											</CellTemplate>
+											<Footer Key="Id"></Footer>
+											<Header Key="Id" Caption="Code"></Header>
+										</igtbl:TemplatedColumn>
+										<igtbl:TemplatedColumn Key="Name" Width="100%" HeaderText="Name" BaseColumnName="Name" CellMultiline="Yes">
+											<CellTemplate>
+												<asp:LinkButton id="lnkEdit" onclick="UpdateGridItem" runat="server">
+													<%#Container.Text%>
+												</asp:LinkButton>
+											</CellTemplate>
+											<Footer Key="Name"></Footer>
+											<Header Key="Name" Caption="Name"></Header>
+										</igtbl:TemplatedColumn>
+										<igtbl:UltraGridColumn HeaderText="R" Key="isMandatory" Width="25px" Type="CheckBox" BaseColumnName="IsResource">
+											<CellStyle HorizontalAlign="Center"></CellStyle>
+											<Footer Key="isResource"></Footer>
+											<Header Key="isResource" Caption="R"></Header>
+										</igtbl:UltraGridColumn>
+									</Columns>
+								</igtbl:UltraGridBand>
+							</Bands>
+						</igtbl:UltraWebGrid>
+						<CENTER>
+							<asp:Label id="lbNoresults" runat="server" Visible="False" Font-Bold="True" ForeColor="Red">No results</asp:Label></CENTER>
+					</td>
+				</tr>
+			</asp:panel>
+		<TR>
+			<td>
+				<igtab:ultrawebtab id="webTab" runat="server" Width="100%" BorderStyle="none" BorderColor="#808080"
+					BorderWidth="1px" DummyTargetUrl="/hc_v4/pleasewait.htm" visible="false" LoadAllTargetUrls="False" Height="100%">
+					<DefaultTabStyle Height="25px" BackColor="WhiteSmoke"></DefaultTabStyle>
+					<RoundedImage SelectedImage="ig_tab_lightb2.gif" NormalImage="ig_tab_lightb1.gif" FillStyle="LeftMergedWithCenter"></RoundedImage>
+					<Tabs>
+						<igtab:Tab DefaultImage="/hc_v4/img/ed_properties.gif" Text="Properties">
+							<ContentPane TargetUrl="./ContainerTypes/datatype_Properties.aspx" Visible="False"></ContentPane>
+						</igtab:Tab>
+						<igtab:Tab Key="Containers" DefaultImage="/hc_v4/img/ed_containers.gif" Text="Containers">
+							<ContentPane TargetUrl="./ContainerTypes/datatype_containers.aspx" Visible="False"></ContentPane>
+						</igtab:Tab>
+					</Tabs>
+				</igtab:ultrawebtab></td>
+		</tr>
+	</table>
+</asp:Content>

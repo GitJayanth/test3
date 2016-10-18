@@ -1,0 +1,270 @@
+.hh_body {
+  margin: 0px;
+  border: 0px;
+  font-family: Verdana, Tahoma,arial,sans-serif;
+  font-size: 8pt;
+  color: #000000;
+  background-color: #FFFFFF;
+  height: 100%;
+}
+
+A:link, A:visited
+{
+  color: darkblue;/*#0066a1;*/
+  font-family: Verdana, Tahoma,arial,sans-serif;
+  text-decoration: none;
+  padding-left: 3px;
+}
+A:hover
+{
+  padding-left: 3px;
+  color: #f58020;
+  text-decoration: underline;
+}
+
+.hh_dropdown{
+  width:150px;
+  font-family: Verdana, Tahoma,arial,sans-serif;
+  font-size: 8pt;
+}
+td, tr{
+  font-size:8pt;
+  font-family: Verdana, Tahoma,arial,sans-serif;
+}
+
+.hh_message{
+  color: green;
+  font-weight: bold;
+}
+
+.hh_errormessage{
+  color: red;
+  font-weight: bold;
+}
+
+.hh_AppLogo{
+  background-image: url(/hc_v4/img/logo.gif);
+  width:185px;
+  height:45px;
+}
+
+
+.hh_Title
+{
+  padding-right: 5pt;
+  border-right: black 1px ridge;
+  border-top: white 1px ridge;
+  padding-left: 1pt;
+  padding-bottom: 1pt;
+  border-right: black 1px ridge;
+  border-top: white 1px ridge;
+  border-left: gainsboro 1px ridge;
+  color: #f58020;
+  font-weight: bold;
+  padding-top: 1pt;
+  border-bottom: black 1px ridge;
+  background-color: whitesmoke;
+  text-align: left;
+  font-size: 10pt;
+  height: 20px;	
+}
+
+.hh_subTitle
+{
+  font-weight: bold;
+  font-family: verdana, arial, sans-serif, sans-serif;
+  font-size: 8pt;
+  border-bottom: #A1989E 1px solid;
+}
+
+/* *********************************************************************** */
+/* ToolBar style *********************************************************** */
+/* *********************************************************************** */
+
+.hh_toolbar{
+  Border: 1px Silver Solid;
+  Background-Image: url(/ig_common/images/ig_tb_back03.gif); 
+  height:20px;
+	text-align:left;
+	vertical-align:middle;
+}
+.hh_toolbardefault{
+  background-image: url(/ig_common/images/ig_tb_back03.gif);
+	text-align:center;
+	vertical-align:middle;
+	width:80px;
+  height:20px;
+}
+.hh_toolbarhover{
+  border: 1px outset;
+  color: blue;
+  Cursor : hand;
+	font-weight:bold;
+  /*background-image: url(/ig_common/images/ig_tb_back03.gif);*/
+  text-align:center;
+	vertical-align:middle;
+  height:20px;
+}
+.hh_toolbarselected{
+  Border:1px inset;
+  /*background-image: url(/ig_common/images/ig_tb_back03.gif);*/
+	font-weight:bold;
+	text-align: center;
+	vertical-align:middle;
+	color:red;
+	width:80px;
+  height:20px;
+}
+/* *********************************************************************** */
+/* Menus style *********************************************************** */
+/* *********************************************************************** */
+.hh_menuitem{
+ color: white;
+ font-weight: bold;
+}
+
+.hh_menuitemover{
+  color: orange;
+  font-weight: bold;
+  cursor: hand;
+}
+
+.hh_menutable{
+  background: black;
+}
+
+/* *********************************************************************** */
+/* Edit window style ***************************************************** */
+/* *********************************************************************** */
+
+.hh_cellTitle{
+  border-right: 1pt double;
+  border-top: 1pt double;
+  font-size: 8pt;
+  border-left: 1pt double;
+  color: black;
+  border-bottom: silver 1pt double;
+  padding-left: 1px;
+  padding-right: 10px;
+  background-color: lightgrey;
+}       
+
+/* *********************************************************************** */
+/* Treeview style ******************************************************** */
+/* *********************************************************************** */
+.hh_tv_node{
+  cursor: Hand;
+  font-size: 8pt;
+  font-family: Verdana, Arial, Tahoma, MS Sans Serif
+  padding-bottom: 0px;
+  padding-left: 1px;
+  padding-top: 0px;
+  padding-right: 0px;
+}
+
+.hh_tv_nodeselected{
+  cursor: Default;
+  border: black 1px solid;
+  font-size: 8pt;
+  font-family: Verdana,Tahoma,Arial;
+  background-color: #E5FFE5;
+  padding-bottom: 0px;
+  padding-left: 1px;
+  padding-top: 0px;
+  padding-right: 0px;
+}
+
+.hh_tv_nodehover{
+  cursor: Hand;
+  border: gray 1px solid;
+  font-size: 8pt;
+  font-family: Verdana,Tahoma,Arial;
+  background-color: Silver;
+  padding-left: 1px;
+  padding-top: 0px;
+  padding-right: 0px;
+}
+
+/* *********************************************************************** */
+/* grid style ************************************************************ */
+/* *********************************************************************** */
+.hh_dataTable
+{
+  border-right: gray 1pt inset;
+  border-top: gray 1pt inset;
+  border-left: gray 1pt inset;
+  border-bottom: gray 1pt inset;
+}
+
+.hh_gridHeader
+{
+  border-right: silver 1pt solid;
+  border-top: silver 1pt solid;
+  font-weight: bold;
+  font-size: 8pt;
+  background-image: url(/hc_v4/img/table_header.gif);
+  text-align: center;
+  border-left: silver 1pt solid;
+  cursor: hand;
+  border-bottom: silver 1pt solid;
+  font-family: Verdana, Tahoma,arial,sans-serif;
+}
+
+.hh_gridCell
+{
+  font-family: Verdana, Tahoma,arial,sans-serif;
+  font-size: 8pt;
+  border: 1px solid silver;
+  background-color: WhiteSmoke;	
+}
+
+.hh_gridCellAlter
+{
+  font-family: Verdana, Tahoma,arial,sans-serif;
+  font-size: 8pt;
+  background-color: #c9d8e6;
+  border-color: #D9D9D9;*/
+  border: 1px solid silver;
+  vertical-align :top 
+}
+
+/* *********************************************************************** */
+/* Report style ********************************************************** */
+/* *********************************************************************** */
+
+
+.hh_titlereport
+{
+  padding-right: 5pt;
+  border-right: black 1px ridge;
+  border-top: white 1px ridge;
+  padding-left: 1pt;
+  padding-bottom: 1pt;
+  border-right: black 1px ridge;
+  border-top: white 1px ridge;
+  border-left: gainsboro 1px ridge;
+  color: black;
+  font-weight: bold;
+  padding-top: 1pt;
+  border-bottom: black 1px ridge;
+  background-color: whitesmoke;
+  text-align: center;
+  font-size: 12pt;
+  height: 25px;	
+}
+
+.hh_subtitlereport
+{
+  font-weight: bold;
+  font-family: verdana, arial, sans-serif, sans-serif;
+  font-size: 10pt;
+  border-bottom: #f58020 1px solid;
+  color: #f58020;
+}
+
+.hh_labelreport
+{
+  font-weight: bold;
+  font-family: verdana, arial, sans-serif, sans-serif;
+  font-size: 9pt;
+}

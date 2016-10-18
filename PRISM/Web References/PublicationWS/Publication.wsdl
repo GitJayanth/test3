@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://www.hypercatalog.fr/webservices" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://www.hypercatalog.fr/webservices" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema targetNamespace="http://www.hypercatalog.fr/webservices">
+      <s:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <s:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+      <s:complexType name="ArrayOfParamSet">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="tns:ParamSet[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ParamSet">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="XmlParams" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetParamSetSoapIn">
+    <wsdl:part name="paramSetName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetParamSetSoapOut">
+    <wsdl:part name="GetParamSetResult" type="tns:ArrayOfParamSet" />
+  </wsdl:message>
+  <wsdl:message name="SetItemParamSetChoiceSoapIn">
+    <wsdl:part name="itemId" type="s:long" />
+    <wsdl:part name="templateName" type="s:string" />
+    <wsdl:part name="paramSetName" type="s:string" />
+    <wsdl:part name="paramSetValueId" type="s:int" />
+  </wsdl:message>
+  <wsdl:message name="SetItemParamSetChoiceSoapOut" />
+  <wsdl:message name="LogTemplateGenerationSoapIn">
+    <wsdl:part name="userId" type="s:int" />
+    <wsdl:part name="itemId" type="s:long" />
+    <wsdl:part name="templateName" type="s:string" />
+    <wsdl:part name="resolution" type="s:string" />
+    <wsdl:part name="cultureCode" type="s:string" />
+    <wsdl:part name="durationSeconds" type="s:int" />
+  </wsdl:message>
+  <wsdl:message name="LogTemplateGenerationSoapOut" />
+  <wsdl:portType name="PublicationSoap">
+    <wsdl:operation name="GetParamSet">
+      <wsdl:input message="tns:GetParamSetSoapIn" />
+      <wsdl:output message="tns:GetParamSetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetItemParamSetChoice">
+      <wsdl:input message="tns:SetItemParamSetChoiceSoapIn" />
+      <wsdl:output message="tns:SetItemParamSetChoiceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LogTemplateGeneration">
+      <wsdl:input message="tns:LogTemplateGenerationSoapIn" />
+      <wsdl:output message="tns:LogTemplateGenerationSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PublicationSoap" type="tns:PublicationSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="GetParamSet">
+      <soap:operation soapAction="http://www.hypercatalog.fr/webservices/GetParamSet" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.hypercatalog.fr/webservices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.hypercatalog.fr/webservices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetItemParamSetChoice">
+      <soap:operation soapAction="http://www.hypercatalog.fr/webservices/SetItemParamSetChoice" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.hypercatalog.fr/webservices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.hypercatalog.fr/webservices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogTemplateGeneration">
+      <soap:operation soapAction="http://www.hypercatalog.fr/webservices/LogTemplateGeneration" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.hypercatalog.fr/webservices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.hypercatalog.fr/webservices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Publication">
+    <wsdl:port name="PublicationSoap" binding="tns:PublicationSoap">
+      <soap:address location="http://83.145.97.146/PublicationManager/Publication.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

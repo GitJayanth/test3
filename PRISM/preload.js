@@ -1,0 +1,71 @@
+﻿if (document && document.images)
+{
+  preload_image_object = new Image();
+  // set image url
+  image_url = new Array();
+  image_url[0] = "acquire.gif";
+  image_url[1] = "administrate.gif";
+  image_url[2] = "Categorization.gif";
+  image_url[3] = "collaborate.gif";
+  image_url[4] = "Content.gif";
+  image_url[5] = "Contentmodel.gif";
+  image_url[6] = "ed_About.gif";
+  image_url[7] = "ed_access.gif";
+  image_url[8] = "ed_analysis.gif";
+  image_url[9] = "ed_Anomalies.gif";
+  image_url[10] = "ed_appobjects.gif";
+  image_url[11] = "ed_batches.gif";
+  image_url[12] = "ed_bundles.gif";
+  image_url[13] = "ed_capabilities.gif";
+  image_url[14] = "ed_complete.gif";
+  image_url[15] = "ed_Containergroups.gif";
+  image_url[16] = "ed_containers.gif";
+  image_url[17] = "ed_Containertypes.gif";
+  image_url[18] = "ed_content.gif";
+  image_url[19] = "ed_contentquality.gif";
+  image_url[20] = "ed_countries.gif";
+  image_url[21] = "ed_Datatypes.gif";
+  image_url[22] = "ed_documents.gif";
+  image_url[23] = "ed_feedback.gif";
+  image_url[24] = "ed_glossary.gif";
+  image_url[25] = "ed_help.gif";
+  image_url[26] = "ed_history.gif";
+  image_url[27] = "ed_import.gif";
+  image_url[28] = "ed_Index.gif";
+  image_url[29] = "ed_inputforms.gif";
+  image_url[30] = "ed_Itemlevels.gif";
+  image_url[31] = "ed_Itemtypes.gif";
+  image_url[32] = "ed_Languages.gif";
+  image_url[33] = "ed_Localizations.gif";
+  image_url[34] = "ed_Lookups.gif";
+  image_url[35] = "ed_menus.gif";
+  image_url[36] = "ed_news.gif";
+  image_url[37] = "ed_organizations.gif";
+  image_url[38] = "ed_outputtemplate.gif";
+  image_url[39] = "ed_Parameters.gif";
+  image_url[40] = "ed_planning.gif";
+  image_url[41] = "ed_profile.gif";
+  image_url[42] = "ed_projectstatus.gif";
+  image_url[43] = "ed_proofread.gif";
+  image_url[44] = "ed_publications.gif";
+  image_url[45] = "ed_Resources.gif";
+  image_url[46] = "ed_roles.gif";
+  image_url[47] = "ed_roll.gif";
+  image_url[48] = "ed_schedule.gif";
+  image_url[49] = "ed_search.gif";
+  image_url[50] = "ed_spellcheck.gif";
+  image_url[51] = "ed_sql.gif";
+  image_url[52] = "ed_topvalue.gif";
+  image_url[53] = "ed_users.gif";
+  image_url[54] = "globalize.gif";
+  image_url[55] = "Help.gif";
+  image_url[56] = "Releases.gif";
+  image_url[57] = "Termbase.gif";
+  image_url[58] = "Translationmemory.gif";
+  image_url[59] = "Virtualdirectories.gif";
+  var i = 0;
+  for(i=0; i<60; i++) 
+  {
+    preload_image_object.src = '/hc_v4/' + image_url[i];
+  }
+}

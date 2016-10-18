@@ -1,0 +1,22 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="HyperCatalog.Empty.Loading.master.cs" Inherits="EmptyLoadingMasterPage" %>
+<%@ Register TagPrefix="hc" TagName="progressbar" Src="~/tools/holoadingpage.ascx"%>
+<asp:contentplaceholder id="HOTOP" runat="server"></asp:contentplaceholder>
+<html>
+  <HEAD>
+    <title>[<%= (string)HyperCatalog.Shared.SessionState.CacheParams["AppName"].Value%>] - <asp:contentplaceholder id="HOPT" runat="server"></asp:contentplaceholder></title>
+    <link href="/hc_v4/css/hypercatalog.css" rel="stylesheet" />
+    <script language="javascript" src="/hc_v4/js/hypercatalog_common.js"></script>
+    <script language="javascript" src="/hc_v4/js/hypercatalog.js"></script>
+		<script type="text/javascript" language="javascript" src="/hc_v4/js/hypercatalog_grid.js"></script>
+    <asp:contentplaceholder id="HOJS" runat="server"></asp:contentplaceholder>
+  </HEAD>
+  <!--onunload="testOpenerReload()"-->
+  <body style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; MARGIN: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px">
+    <form name="aspnetForm" id="aspnetForm" method="post" runat="server">
+      <hc:progressbar id="hoprogress1" runat="server" SrcImage="/hc_v4/img/ed_wait.gif"/>
+      <asp:contentplaceholder id="HOCP" runat="server"></asp:contentplaceholder>
+      <input type="hidden" id="SearchText" name="SearchText"/>
+    </form>
+  </body>
+</html>
+<asp:contentplaceholder id="HOJSBottom" runat="server"></asp:contentplaceholder>

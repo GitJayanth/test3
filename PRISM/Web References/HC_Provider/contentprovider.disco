@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://83.145.97.146/hc_provider/contentprovider.asmx?wsdl" docRef="http://83.145.97.146/hc_provider/contentprovider.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://83.145.97.146/hc_provider/contentprovider.asmx" xmlns:q1="http://publishing.hyperobjects.fr/webservices/" binding="q1:ContentProviderSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

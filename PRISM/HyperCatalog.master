@@ -1,0 +1,124 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="HyperCatalog.master.cs" Inherits="HyperCatalog.MasterPage" %>
+<%@ Register TagPrefix="hcmenu" TagName="menu" Src="~/design/TopMenu.ascx"%>
+<%@ Register TagPrefix="ignav" Namespace="Infragistics.WebUI.UltraWebNavigator" Assembly="Infragistics2.WebUI.UltraWebNavigator.v11.1, Version=11.1.20111.2238, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" %>
+<html>
+  <head>
+    <title>[<%= appName%>]</title>
+    <meta http-equiv="Page-Enter" content="blendTrans(Duration=0.1)" />
+    <meta http-equiv="Page-Exit" content="blendTrans(Duration=0.1)" />
+		<META NAME="COPYRIGHT" CONTENT="PRISM 2.0 - Copyright Hewlett Packard 2006">
+    <link href="/hc_v4/css/hypercatalog.css" rel="stylesheet" />
+    <script type="text/javascript" language="javascript" src="/hc_v4/js/hypercatalog_common.js"></script>
+    <script type="text/javascript"language="javascript" src="/hc_v4/js/hypercatalog.js"></script>
+<%--   <script type="text/javascript" language="javascript" src="/hc_v4/js/cfhook.js"></script>
+--%>   <script type="text/javascript" language="javascript">
+           function PopupPubManager() {
+               OpenModalWindow('<%= Page.Form.ResolveUrl("~/UI/Collaborate/PublicationManager.aspx")%>', 'PublicationManager', 650, 800, 'yes', 1);
+           }
+
+           //    	/*****************AS PART OF PRISM UI TO PDB CHANGES BY REKHA THOMAS*************************/
+           function PopupForBossReports(reportName, reportId) {
+
+               BossReportsURL = "/Admin/reports/RedirectReportsToBoss.aspx";
+               BossReportsURL = BossReportsURL + "?reportId=" + reportId + "&reportName=" + reportName;
+               OpenModalWindow('<%= Page.Form.ResolveUrl("~/UI")%>' + BossReportsURL, 'BOSSReports', 210, 520, 'yes', 1);
+               //iDocID = ""; sDoc = ""; BossReportsURL = "";
+           }
+           //        /*****************END AS PART OF PRISM UI TO PDB CHANGES BY REKHA THOMAS*************************/
+
+    </script>
+    <script>        var ccc;</script>
+  </head>
+  <body style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; MARGIN: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px">
+    <form id="frmMain" method="post" runat="server">
+      <!--- Menu Table -->
+      <table style="WIDTH: 100%; HEIGHT: 100%;" cellspacing="0" cellpadding="0" border="0">
+        <tr valign="top" style="height: 1px" align="left">
+          <td>
+            <table cellspacing="0" cellpadding="0" width="100%" border="0">
+              <tr align="left" bgcolor="#425563">
+                <td style="width: 31px; height: 30px"><a href="javascript:BackHome()"><img alt="" src='<%= "/hc_v4/img/" + (string)HyperCatalog.Shared.SessionState.CacheParams["CustomerLogo"].Value%>' border="0" /></a></td>
+                <td nowrap style="height: 30px;">
+                  <hcmenu:menu id="hcM" runat="server"></hcmenu:menu>
+                </td>
+                  <td style="vertical-align:middle;color:White; width: 100px; height: 30px"><span>&nbsp;&raquo;&nbsp</span>
+                <asp:linkbutton cssclass="hc_logout" id="linkbutton1" runat="server" Text="Edit Profile" 
+                     Font-Names="Verdana"
+                    Font-Size="8pt"  Font-Bold="true"
+                     ForeColor="white" 
+                    OnClick="linkbutton1_Click" >
+<%--                    <img alt="edit hp profile" src="/hc_v4/img/puzzle-small.gif" border="0" />
+--%>                </asp:linkbutton>
+                </td>
+                  <td style="vertical-align:middle;color:White; width: 100px; height: 30px"><span>&nbsp;&raquo;&nbsp</span>
+                   <asp:linkbutton cssclass="hc_logout" id="logoutLk_btn_ho" Visible="true" runat="server"  Text="Sign Out" 
+                 Font-Names="Verdana"  Font-Bold="true"
+                  Font-Size="8pt" 
+                   ForeColor="white"
+                 onclick="logoutLk_Click">
+                
+<%--                    <img alt="Close session" src="/hc_v4/img/ed_logout.gif" border="0" />
+
+--%>     
+           </asp:linkbutton>
+                </td>
+             
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr valign="top" style="height: auto">
+          <td>
+            <table style="WIDTH: 100%; HEIGHT: 100%;" cellspacing="0" cellpadding="0" border="0">
+              <tr bgcolor="#b2b2b2" style="height: 1px">
+                <td style="width: 99%" class="hc_pagetitle">
+                  <div>
+                    <asp:contentplaceholder id="HOPT" runat="server"></asp:contentplaceholder>
+                  </div>
+                </td>
+                <td>
+                  <asp:Panel ID="panelSearch" Runat="server">
+                    <table cellspacing="0" cellpadding="0" border="0">
+                      <tr style="height: 1px">
+                        <td nowrap style="width: 140px; height: 24px">
+                          <asp:textbox id="txtSearch" runat="server" CssClass="search" Columns="20" MaxLength="255"> Search</asp:textbox></td>
+                        <td valign="middle" style="width: 10px">
+                          <asp:imagebutton id="imgSearch" runat="server" ImageAlign="Middle" ImageUrl="/hc_v4/img/searchbutton.gif"></asp:imagebutton></td>
+                      </tr>
+                    </table>
+                  </asp:Panel>
+                </td>
+              </tr>
+              <tr valign="top" align="left" style="height: auto">
+                <td colspan="6">
+    <div style="height:100%">
+<asp:contentplaceholder id="HOCP" runat="server"></asp:contentplaceholder>
+    </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr style="height: 1px">
+          <td>
+              <table cellspacing="0" cellpadding="0" width="100%" style="background-color:#b2b2b2" border="0">
+                <tr>
+                  <td class="hc_userinfo" align="left">
+                    <asp:label id="lbUser" runat="server" text="user"></asp:label> -
+                    <asp:label id="lbOrganization" runat="server" text="orgName">orgName</asp:label> -
+                    <asp:label id="lbRole" runat="server" text="Role">Role</asp:label> - 
+                    <asp:label id="lbTimeZone" runat="server" text="TimeZone">TimeZone</asp:label> -                                       
+                     Version <%= HyperCatalog.Business.Settings.BuildNumber%>
+                    </td>
+                  <td valign="top" align="right" class="hc_userinfo"><span style="visibility:hidden;display:none">Copyright © 2004-2006 
+                      HyperObjects</span><a style="color:White;font-size:xx-small;" href="<%=HyperCatalog.Shared.SessionState.CacheParams["ContentQualitySupportLink"].Value%>" target="_blank" title="<%=HyperCatalog.Shared.SessionState.CacheParams["ContentQualitySupportLinkTitle"].Value%>">Content Quality Support</a> - 
+                      <a style="color:White;font-size:xx-small;" href="<%=HyperCatalog.Shared.SessionState.CacheParams["ApplicationSupportLink"].Value%>" target="_blank" title="<%=HyperCatalog.Shared.SessionState.CacheParams["ApplicationSupportLinkTitle"].Value%>">Application Support</a></td>
+                </tr>
+              </table>
+          </td>
+        </tr>
+      </table>
+      <input type="hidden" id="SearchText" name="SearchText"/>
+    </form>
+  </body>
+</html>

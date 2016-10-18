@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://microsoft.com/wsdl/types/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://publishing.hyperobjects.fr/webservices/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://publishing.hyperobjects.fr/webservices/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SignOnSoapIn">
+    <wsdl:part name="userName" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SignOnSoapOut">
+    <wsdl:part name="SignOnResult" type="s:boolean" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateFromGUIDSoapIn">
+    <wsdl:part name="templateId" type="s0:guid" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateFromGUIDSoapOut">
+    <wsdl:part name="GetTemplateFromGUIDResult" type="s:base64Binary" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateFromNameSoapIn">
+    <wsdl:part name="templateName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateFromNameSoapOut">
+    <wsdl:part name="GetTemplateFromNameResult" type="s:base64Binary" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateStringFromGUIDSoapIn">
+    <wsdl:part name="templateId" type="s0:guid" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateStringFromGUIDSoapOut">
+    <wsdl:part name="GetTemplateStringFromGUIDResult" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateStringFromNameSoapIn">
+    <wsdl:part name="templateName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateStringFromNameSoapOut">
+    <wsdl:part name="GetTemplateStringFromNameResult" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateGUIDSoapIn">
+    <wsdl:part name="templateName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateGUIDSoapOut">
+    <wsdl:part name="GetTemplateGUIDResult" type="s0:guid" />
+  </wsdl:message>
+  <wsdl:message name="StoreTemplateSoapIn">
+    <wsdl:part name="templateName" type="s:string" />
+    <wsdl:part name="templateStream" type="s:base64Binary" />
+  </wsdl:message>
+  <wsdl:message name="StoreTemplateSoapOut">
+    <wsdl:part name="StoreTemplateResult" type="s0:guid" />
+  </wsdl:message>
+  <wsdl:message name="StoreTemplateWithDateSoapIn">
+    <wsdl:part name="templateName" type="s:string" />
+    <wsdl:part name="templateStream" type="s:base64Binary" />
+    <wsdl:part name="creationDate" type="s:dateTime" />
+  </wsdl:message>
+  <wsdl:message name="StoreTemplateWithDateSoapOut">
+    <wsdl:part name="StoreTemplateWithDateResult" type="s0:guid" />
+  </wsdl:message>
+  <wsdl:message name="RenameTemplateSoapIn">
+    <wsdl:part name="oldTemplateName" type="s:string" />
+    <wsdl:part name="newTemplateName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RenameTemplateSoapOut" />
+  <wsdl:message name="LastModificationDateSoapIn">
+    <wsdl:part name="templateName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LastModificationDateSoapOut">
+    <wsdl:part name="LastModificationDateResult" type="s:dateTime" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTemplateRepositoryFromWESoapIn" />
+  <wsdl:message name="UpdateTemplateRepositoryFromWESoapOut" />
+  <wsdl:portType name="TemplateRepositorySoap">
+    <wsdl:operation name="SignOn">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">LogIn</documentation>
+      <wsdl:input message="tns:SignOnSoapIn" />
+      <wsdl:output message="tns:SignOnSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateFromGUID">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get a specific version of a template</documentation>
+      <wsdl:input message="tns:GetTemplateFromGUIDSoapIn" />
+      <wsdl:output message="tns:GetTemplateFromGUIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateFromName">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get the last template from its name</documentation>
+      <wsdl:input message="tns:GetTemplateFromNameSoapIn" />
+      <wsdl:output message="tns:GetTemplateFromNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateStringFromGUID">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get a specific version of a template</documentation>
+      <wsdl:input message="tns:GetTemplateStringFromGUIDSoapIn" />
+      <wsdl:output message="tns:GetTemplateStringFromGUIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateStringFromName">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get the last template from its name</documentation>
+      <wsdl:input message="tns:GetTemplateStringFromNameSoapIn" />
+      <wsdl:output message="tns:GetTemplateStringFromNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateGUID">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get the last template GUID from its name</documentation>
+      <wsdl:input message="tns:GetTemplateGUIDSoapIn" />
+      <wsdl:output message="tns:GetTemplateGUIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreTemplate">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Store a new template</documentation>
+      <wsdl:input message="tns:StoreTemplateSoapIn" />
+      <wsdl:output message="tns:StoreTemplateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreTemplateWithDate">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Store a new template and specify when it has been created</documentation>
+      <wsdl:input message="tns:StoreTemplateWithDateSoapIn" />
+      <wsdl:output message="tns:StoreTemplateWithDateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RenameTemplate">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Rename a template</documentation>
+      <wsdl:input message="tns:RenameTemplateSoapIn" />
+      <wsdl:output message="tns:RenameTemplateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LastModificationDate">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get last modification date</documentation>
+      <wsdl:input message="tns:LastModificationDateSoapIn" />
+      <wsdl:output message="tns:LastModificationDateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTemplateRepositoryFromWE">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Update template repository from WE database</documentation>
+      <wsdl:input message="tns:UpdateTemplateRepositoryFromWESoapIn" />
+      <wsdl:output message="tns:UpdateTemplateRepositoryFromWESoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TemplateRepositorySoap" type="tns:TemplateRepositorySoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="SignOn">
+      <soap:operation soapAction="http://publishing.hyperobjects.fr/webservices/SignOn" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://publishing.hyperobjects.fr/webservices/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://publishing.hyperobjects.fr/webservices/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateFromGUID">
+      <soap:operation soapAction="http://publishing.hyperobjects.fr/webservices/GetTemplateFromGUID" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://publishing.hyperobjects.fr/webservices/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://publishing.hyperobjects.fr/webservices/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateFromName">
+      <soap:operation soapAction="http://publishing.hyperobjects.fr/webservices/GetTemplateFromName" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://publishing.hyperobjects.fr/webservices/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://publishing.hyperobjects.fr/webservices/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateStringFromGUID">
+      <soap:operation soapAction="http://publishing.hyperobjects.fr/webservices/GetTemplateStringFromGUID" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://publishing.hyperobjects.fr/webservices/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://publishing.hyperobjects.fr/webservices/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateStringFromName">
+      <soap:operation soapAction="http://publishing.hyperobjects.fr/webservices/GetTemplateStringFromName" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://publishing.hyperobjects.fr/webservices/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://publishing.hyperobjects.fr/webservices/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateGUID">
+      <soap:operation soapAction="http://publishing.hyperobjects.fr/webservices/GetTemplateGUID" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://publishing.hyperobjects.fr/webservices/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://publishing.hyperobjects.fr/webservices/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreTemplate">
+      <soap:operation soapAction="http://publishing.hyperobjects.fr/webservices/StoreTemplate" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://publishing.hyperobjects.fr/webservices/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://publishing.hyperobjects.fr/webservices/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreTemplateWithDate">
+      <soap:operation soapAction="http://publishing.hyperobjects.fr/webservices/StoreTemplateWithDate" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://publishing.hyperobjects.fr/webservices/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://publishing.hyperobjects.fr/webservices/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RenameTemplate">
+      <soap:operation soapAction="http://publishing.hyperobjects.fr/webservices/RenameTemplate" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://publishing.hyperobjects.fr/webservices/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://publishing.hyperobjects.fr/webservices/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LastModificationDate">
+      <soap:operation soapAction="http://publishing.hyperobjects.fr/webservices/LastModificationDate" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://publishing.hyperobjects.fr/webservices/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://publishing.hyperobjects.fr/webservices/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTemplateRepositoryFromWE">
+      <soap:operation soapAction="http://publishing.hyperobjects.fr/webservices/UpdateTemplateRepositoryFromWE" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://publishing.hyperobjects.fr/webservices/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://publishing.hyperobjects.fr/webservices/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TemplateRepository">
+    <wsdl:port name="TemplateRepositorySoap" binding="tns:TemplateRepositorySoap">
+      <soap:address location="http://83.145.97.143/templaterepository/templaterepository.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

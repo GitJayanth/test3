@@ -1,0 +1,15 @@
+<project name="PRISM.WEBUI.HyperHelp" default="rebuild">
+  <include buildfile="..\..\..\common.properties.xml"/>
+  <include buildfile="..\..\..\common.tasks.xml"/>
+
+  <property name="webapp.name" value="HyperHelp" overwrite="false"/>
+
+  <target name="compile" depends="webui.compile"/>
+
+  <target name="webui.compile" depends="common.api.compile, common.compile.WEBUI">
+    <property name="language" value="VB"/>
+    <property name="input.resourceFile" value="${common.input.data}\WEBUI\HyperHelp\web\resources.zip"/>
+    <unzip zipfile="${input.resourceFile}" todir="${output}\${webapp.name}" if="${file::exists(input.resourceFile)}"/>
+  </target>
+
+</project>

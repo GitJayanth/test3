@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://www.hypercatalog.fr/webservices/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://www.hypercatalog.fr/webservices/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.hypercatalog.fr/webservices/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="AddEventLog">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AppComponentId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="JobId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="EventId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Severity" type="tns:Severity" />
+            <s:element minOccurs="0" maxOccurs="1" name="Source" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GeoCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ItemId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="OtherId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="Detail" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="Severity">
+        <s:restriction base="s:string">
+          <s:enumeration value="BEGIN" />
+          <s:enumeration value="SUCCESS" />
+          <s:enumeration value="INFORMATION" />
+          <s:enumeration value="WARNING" />
+          <s:enumeration value="ERROR" />
+          <s:enumeration value="FAILURE" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="AddEventLogResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddEventLogResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AddEventLogSoapIn">
+    <wsdl:part name="parameters" element="tns:AddEventLog" />
+  </wsdl:message>
+  <wsdl:message name="AddEventLogSoapOut">
+    <wsdl:part name="parameters" element="tns:AddEventLogResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WSEventLoggerSoap">
+    <wsdl:operation name="AddEventLog">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">This method adds a new event log</documentation>
+      <wsdl:input message="tns:AddEventLogSoapIn" />
+      <wsdl:output message="tns:AddEventLogSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSEventLoggerSoap" type="tns:WSEventLoggerSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <wsdl:operation name="AddEventLog">
+      <soap:operation soapAction="http://www.hypercatalog.fr/webservices/AddEventLog" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSEventLogger">
+    <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Web service allows creating event log</documentation>
+    <wsdl:port name="WSEventLoggerSoap" binding="tns:WSEventLoggerSoap">
+      <soap:address location="http://83.145.97.146/WSEventLogger/WSEventLogger.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,44 @@
+<project name="PRISM.WEBUI" default="rebuild">
+  <include buildfile="..\..\common.properties.xml"/>
+  <include buildfile="..\..\common.tasks.xml"/>
+
+  <property name="webapp.name" value="PRISM" overwrite="false"/>
+
+  <target name="compile" depends="webui.compile"/>
+
+  <target name="webui.compile" depends="common.api.compile, common.compile.WEBUI">
+    <mkdir dir="${output}\${webapp.name}\UI\Admin\eventbrowser\ChartImages"/>
+    <xmlpoke
+      file="${output.configFile}"
+      xpath="/configuration/HyperCompressionModule/@compressionFactory"
+      value="HyperComponents.Compression.Http.HOStandardCompressionFactory,PRISM.COMPONENTS" />
+    <xmlpoke
+      file="${output.configFile}"
+      xpath="/configuration/system.web/httpModules/add[@name='HttpCompressionModule']/@type"
+      value="HyperComponents.Compression.Http.HOHttpCompression, PRISM.COMPONENTS" />
+    <xmlpoke
+      file="${output.configFile}"
+      xpath="/configuration/system.web/httpHandlers/add[@path='HOCompress.axd']/@type"
+      value="HyperComponents.Compression.Http.HOHttpCompressionTraceHandler,PRISM.COMPONENTS" />
+    <!-- Temporary fix to make the home page works -->
+  
+   <copy todir="${output}\${webapp.name}\Modules">
+      <fileset>
+        <include name="Modules\*.ascx"/>
+      </fileset>
+    </copy>
+   
+ <copy todir="${output}\${webapp.name}\bin">
+      <fileset>
+        <include name="oracle\*.dll"/>
+      </fileset>
+    </copy>
+
+    <property name="input.resourceFile" value="${common.input.data}\WEBUI\PRISM\layout.zip"/>
+    <unzip zipfile="${input.resourceFile}" todir="${common.output.WEBUI}\layout" if="${file::exists(input.resourceFile)}"/>
+
+    
+
+  </target>
+  
+</project>

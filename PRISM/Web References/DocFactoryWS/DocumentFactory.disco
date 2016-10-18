@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://83.145.97.146/Crystal/WebServices/DocumentFactory/DocumentFactory.asmx?wsdl" docRef="http://83.145.97.146/Crystal/WebServices/DocumentFactory/DocumentFactory.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://83.145.97.146/Crystal/WebServices/DocumentFactory/DocumentFactory.asmx" xmlns:q1="http://www.hyperobjects.fr/DocumentFactory" binding="q1:DocumentFactorySoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://www.hyperobjects.fr/DocumentFactory" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://www.hyperobjects.fr/DocumentFactory" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types />
+  <wsdl:message name="SignOnSoapIn">
+    <wsdl:part name="ApplicationID" type="s:string" />
+    <wsdl:part name="ApplicationUserID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SignOnSoapOut">
+    <wsdl:part name="SignOnResult" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SignOffSoapIn">
+    <wsdl:part name="sessionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SignOffSoapOut">
+    <wsdl:part name="SignOffResult" type="s:boolean" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateCustomizableListsSoapIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="templateName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateCustomizableListsSoapOut">
+    <wsdl:part name="GetTemplateCustomizableListsResult" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateDocumentStreamFromBinarySoapIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="xmlContent" type="s:string" />
+    <wsdl:part name="templateBinary" type="s:base64Binary" />
+    <wsdl:part name="layoutName" type="s:string" />
+    <wsdl:part name="languageCode" type="s:string" />
+    <wsdl:part name="parameters" type="s:string" />
+    <wsdl:part name="Resolution" type="s:string" />
+    <wsdl:part name="userLists" type="s:string" />
+    <wsdl:part name="feedbackInfo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateDocumentStreamFromBinarySoapOut">
+    <wsdl:part name="CreateDocumentStreamFromBinaryResult" type="s:base64Binary" />
+    <wsdl:part name="feedbackInfo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateDocumentStreamFromFileSoapIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="xmlContent" type="s:string" />
+    <wsdl:part name="xmlTemplate" type="s:string" />
+    <wsdl:part name="layoutName" type="s:string" />
+    <wsdl:part name="languageCode" type="s:string" />
+    <wsdl:part name="parameters" type="s:string" />
+    <wsdl:part name="Resolution" type="s:string" />
+    <wsdl:part name="userLists" type="s:string" />
+    <wsdl:part name="feedbackInfo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateDocumentStreamFromFileSoapOut">
+    <wsdl:part name="CreateDocumentStreamFromFileResult" type="s:base64Binary" />
+    <wsdl:part name="feedbackInfo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateHTMLDocumentStreamSoapIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="xmlContent" type="s:string" />
+    <wsdl:part name="templateName" type="s:string" />
+    <wsdl:part name="layoutName" type="s:string" />
+    <wsdl:part name="languageCode" type="s:string" />
+    <wsdl:part name="direction" type="s:string" />
+    <wsdl:part name="Resolution" type="s:string" />
+    <wsdl:part name="userLists" type="s:string" />
+    <wsdl:part name="feedbackInfo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateHTMLDocumentStreamSoapOut">
+    <wsdl:part name="CreateHTMLDocumentStreamResult" type="s:base64Binary" />
+    <wsdl:part name="feedbackInfo" type="s:string" />
+  </wsdl:message>
+  <wsdl:portType name="DocumentFactorySoap">
+    <wsdl:operation name="SignOn">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Sign on and return a session ID. Must be called prior any document creation.</documentation>
+      <wsdl:input message="tns:SignOnSoapIn" />
+      <wsdl:output message="tns:SignOnSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SignOff">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Sign off.</documentation>
+      <wsdl:input message="tns:SignOffSoapIn" />
+      <wsdl:output message="tns:SignOffSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateCustomizableLists">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get list of LIST in a given template that can ce customized by users.</documentation>
+      <wsdl:input message="tns:GetTemplateCustomizableListsSoapIn" />
+      <wsdl:output message="tns:GetTemplateCustomizableListsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocumentStreamFromBinary" parameterOrder="sessionID xmlContent templateBinary layoutName languageCode parameters Resolution userLists feedbackInfo">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Return PDF document throught an array of byte using an XML byte array as template; no document is stored on server side.</documentation>
+      <wsdl:input message="tns:CreateDocumentStreamFromBinarySoapIn" />
+      <wsdl:output message="tns:CreateDocumentStreamFromBinarySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocumentStreamFromFile" parameterOrder="sessionID xmlContent xmlTemplate layoutName languageCode parameters Resolution userLists feedbackInfo">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Return PDF document throught an array of byte using an XML string as template; no document is stored on server side.</documentation>
+      <wsdl:input message="tns:CreateDocumentStreamFromFileSoapIn" />
+      <wsdl:output message="tns:CreateDocumentStreamFromFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateHTMLDocumentStream" parameterOrder="sessionID xmlContent templateName layoutName languageCode direction Resolution userLists feedbackInfo">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Return HTML document throught an array of byte; no document is stored on server side.</documentation>
+      <wsdl:input message="tns:CreateHTMLDocumentStreamSoapIn" />
+      <wsdl:output message="tns:CreateHTMLDocumentStreamSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DocumentFactorySoap" type="tns:DocumentFactorySoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="SignOn">
+      <soap:operation soapAction="http://www.hyperobjects.fr/DocumentFactory/SignOn" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.hyperobjects.fr/DocumentFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.hyperobjects.fr/DocumentFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SignOff">
+      <soap:operation soapAction="http://www.hyperobjects.fr/DocumentFactory/SignOff" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.hyperobjects.fr/DocumentFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.hyperobjects.fr/DocumentFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateCustomizableLists">
+      <soap:operation soapAction="http://www.hyperobjects.fr/DocumentFactory/GetTemplateCustomizableLists" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.hyperobjects.fr/DocumentFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.hyperobjects.fr/DocumentFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocumentStreamFromBinary">
+      <soap:operation soapAction="http://www.hyperobjects.fr/DocumentFactory/CreateDocumentStreamFromBinary" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.hyperobjects.fr/DocumentFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.hyperobjects.fr/DocumentFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocumentStreamFromFile">
+      <soap:operation soapAction="http://www.hyperobjects.fr/DocumentFactory/CreateDocumentStreamFromFile" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.hyperobjects.fr/DocumentFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.hyperobjects.fr/DocumentFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateHTMLDocumentStream">
+      <soap:operation soapAction="http://www.hyperobjects.fr/DocumentFactory/CreateHTMLDocumentStream" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.hyperobjects.fr/DocumentFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.hyperobjects.fr/DocumentFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DocumentFactory">
+    <wsdl:port name="DocumentFactorySoap" binding="tns:DocumentFactorySoap">
+      <soap:address location="http://83.145.97.146/Crystal/WebServices/DocumentFactory/DocumentFactory.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
